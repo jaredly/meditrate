@@ -2,6 +2,7 @@
 var React = require('react-native');
 var {
   DatePickerIOS,
+  Dimensions,
   TouchableHighlight,
   ScrollView,
   TextInput,
@@ -20,7 +21,7 @@ var NewTranslation = React.createClass({
       shooting: false,
       imgZoom: false,
       due: new Date(),
-      img: null,
+      img: 'http://elonka.com/kryptos/sanborn/KGBCyrillic.jpg',
     };
   },
 
@@ -39,15 +40,18 @@ var NewTranslation = React.createClass({
       return <Camera onDone={this.tookPhoto} />;
     }
     var img = null;
+    var dims = Dimensions.get('window');
     if (this.state.img) {
       if (this.state.imgZoom) {
-        img = (
-          <ScrollView style={styles.scrollView} maximumZoomScale={3}>
-            <Image style={styles.bigImage} source={{uri: this.state.img}} />;
+        return (
+          <View style={styles.imgZoom}>
+            <ScrollView style={styles.scrollView} maximumZoomScale={10}>
+              <Image style={[styles.bigImage2, {width: dims.width, height: dims.height}]} source={{uri: this.state.img}} />
+            </ScrollView>
             <TouchableHighlight onPress={() => this.setState({imgZoom: false})} style={styles.closeButton}>
               <Text style={styles.closeButtonText}>&times;</Text>
             </TouchableHighlight>
-          </ScrollView>
+          </View>
         );
       } else {
         img = (
@@ -95,21 +99,44 @@ var styles = {
   image: {
     height: 100,
   },
+  bigImage: {
+    flex: .5,
+  },
+  bigImage2: {
+    height: 100,
+    //alignSelf: 'stretch',
+  },
   closeButton: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: 30,
+    right: 10,
   },
   closeButtonText: {
-    fontSize: 30,
+    fontSize: 50,
+    lineHeight: 38,
+    height: 30,
     color: 'white',
+    borderRadius: 3,
+    backgroundColor: 'rgba(0,0,0,.3)',
   },
-  scrollView: {
+  button: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, .5)',
+    borderRadius: 5,
+    margin: 5,
+  },
+  imgZoom: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
+    backgroundColor: 'red',
+  },
+  scrollView: {
+    flex: 1,
+    backgroundColor: 'white',
   },
   title: {
     padding: 10,

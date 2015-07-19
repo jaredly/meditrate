@@ -1,0 +1,15 @@
+{
+  "name": "meditrate",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "parse": "^1.5.0",
+    "parse-react": "^0.4.2",
+    "react-native": "^0.7.1",
+    "react-native-camera": "^0.3.0",
+    "react-native-material-kit": "^0.1.1"
+  }
+}
