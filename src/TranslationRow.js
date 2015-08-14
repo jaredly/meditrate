@@ -16,6 +16,7 @@ var TranslationRow = React.createClass({
     return (
       <View style={styles.container}>
         <Text>{data.title}</Text>
+        <Text>{data.status}</Text>
       </View>
     );
   },

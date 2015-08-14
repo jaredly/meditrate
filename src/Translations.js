@@ -20,7 +20,12 @@ var Translations = React.createClass({
   },
   render() {
     if (this.state.creating) {
-      return <NewTranslation onClose={() => this.setState({creating: false})} />;
+      return (
+        <NewTranslation
+          user={this.props.user}
+          onClose={() => this.setState({creating: false})}
+        />
+      );
     }
     return (
       <View style={styles.container}>
@@ -28,7 +33,7 @@ var Translations = React.createClass({
         <ScrollView
           style={styles.scrollView}
         >
-          <TranslationList />
+          <TranslationList username={this.props.user.username} />
         </ScrollView>
         <TouchableHighlight onPress={() => this.setState({creating: true})} style={styles.button}>
           <Text>New Translation Request</Text>
@@ -50,7 +55,6 @@ var styles = {
   },
   button: {
     padding: 10,
-    marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
   }

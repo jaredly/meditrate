@@ -18,9 +18,11 @@ var UserBar = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text>Welcome!</Text>
+        <View style={styles.welcome}>
+          <Text style={styles.username}>{this.data.user && this.data.user.username}</Text>
+        </View>
         <View style={styles.stretch}/>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight onPress={() => Parse.User.logOut()} style={styles.button}>
           <Text>Log out</Text>
         </TouchableHighlight>
       </View>
@@ -33,6 +35,13 @@ var styles = {
     flexDirection: 'row',
     padding: 5,
     paddingTop: 20,
+  },
+  welcome: {
+    paddingTop: 10,
+    paddingLeft: 5,
+  },
+  username: {
+    color: '#0af',
   },
   stretch: {
     flex: 1,

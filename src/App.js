@@ -24,7 +24,7 @@ var App = React.createClass({
     if (!this.data.user) {
       return <Login onLogin={() => this.setState({loggedIn: true})} />;
     }
-    return <Translations />;
+    return <Translations user={this.data.user} />;
   }
 });
 
